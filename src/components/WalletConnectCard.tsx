@@ -37,7 +37,7 @@ export const WalletConnectCard: React.FC = () => {
               Disconnect Wallet
             </button>
           ) : (
-            <ConnectButton />
+            <ConnectButton chainStatus="icon" />
           )}
         </div>
       </div>

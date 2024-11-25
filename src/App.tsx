@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Hero } from './components/Hero';
-import { WalletConnectCard } from './components/WalletConnectCard';
-import { SmartWalletCard } from './components/SmartWalletCard';
-import { WalletInfo } from './components/WalletInfo';
-import { Footer } from './components/Footer';
+import React, { useState } from "react";
+import { Hero } from "./components/Hero";
+import { WalletConnectCard } from "./components/WalletConnectCard";
+import { SmartWalletCard } from "./components/SmartWalletCard";
+import { WalletInfo } from "./components/WalletInfo";
+import { Footer } from "./components/Footer";
 
 const App: React.FC = () => {
   const [isCreatingSmartWallet, setIsCreatingSmartWallet] = useState(false);
@@ -12,10 +12,10 @@ const App: React.FC = () => {
     setIsCreatingSmartWallet(true);
     try {
       // Implement Coinbase Smart Wallet creation here
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
-      console.log('Creating smart wallet...');
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API call
+      console.log("Creating smart wallet...");
     } catch (error) {
-      console.error('Error creating smart wallet:', error);
+      console.error("Error creating smart wallet:", error);
     } finally {
       setIsCreatingSmartWallet(false);
     }
