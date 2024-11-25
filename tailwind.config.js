@@ -1,20 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+import daisyui from "daisyui";
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter var', 'sans-serif'],
+        sans: ["Inter var", "sans-serif"],
       },
     },
   },
-  plugins: [require('daisyui')],
-  daisyui: {
-    themes: ['light'],
-    styled: true,
-    base: true,
-    utils: true,
-    logs: false,
-    rtl: false,
-  },
+  plugins: [daisyui],
+  daisyui: {},
 };
