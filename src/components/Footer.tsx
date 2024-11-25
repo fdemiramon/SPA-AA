@@ -1,5 +1,5 @@
-import React from 'react';
-import { HeartIcon } from 'lucide-react';
+import React from "react";
+import { HeartIcon } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
       <div className="flex items-center gap-2">
         <p>Made with</p>
         <HeartIcon className="w-4 h-4 text-red-500 animate-pulse" />
-        <p>by Izun © {currentYear}</p>
+        <p>by 0x32d6 © {currentYear}</p>
       </div>
     </footer>
   );
