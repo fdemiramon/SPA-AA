@@ -12,8 +12,12 @@ export const SmartWalletCard: React.FC<SmartWalletCardProps> = ({
   isCreating,
 }) => {
   const { connect, connectors } = useConnect();
-  const { isConnected } = useAccount();
+  const { isConnected, connector } = useAccount();
   const { disconnect } = useDisconnect();
+
+  const isSmartWallet = connector?.id === "coinbaseWalletSDK";
+  const shouldShow = !isConnected || isSmartWallet;
+  const isSingleCard = isConnected;
 
   const handleCreateWallet = async () => {
     try {
@@ -22,7 +26,7 @@ export const SmartWalletCard: React.FC<SmartWalletCardProps> = ({
         throw new Error("Coinbase connector not found");
       }
 
-      await connect({ connector: coinbaseConnector });
+      connect({ connector: coinbaseConnector });
       await onCreateWallet();
     } catch (error) {
       console.error("Failed to connect:", error);
@@ -30,19 +34,28 @@ export const SmartWalletCard: React.FC<SmartWalletCardProps> = ({
   };
 
   return (
-    <div className="card bg-base-100 shadow-xl">
+    <div
+      className={`card bg-base-100 shadow-xl transition-all duration-500 ease-in-out transform 
+        ${
+          shouldShow
+            ? "scale-100 opacity-100"
+            : "scale-95 opacity-0 pointer-events-none absolute"
+        }
+        ${isSingleCard ? "md:col-span-2 md:mx-auto md:w-[600px]" : ""}`}
+    >
       <div className="card-body">
         <h2 className="card-title">
           <Wallet2Icon className="w-6 h-6" />
-          {isConnected ? "Smart Wallet Connected" : "Create Smart Wallet"}
+          {isSmartWallet ? "Smart Wallet Connected" : "Create Smart Wallet"}
         </h2>
         <p className="text-base-content/70">
-          {isConnected
+          {connector?.id}
+          {isSmartWallet
             ? "Your Coinbase Smart Wallet is connected and ready to use."
             : "Create a new smart contract wallet using Coinbase and secure it with a passkey."}
         </p>
         <div className="card-actions justify-end mt-4">
-          {isConnected ? (
+          {isSmartWallet ? (
             <button className="btn btn-error" onClick={() => disconnect()}>
               Disconnect Wallet
             </button>
